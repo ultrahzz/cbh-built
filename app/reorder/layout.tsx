@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { OrderProvider } from "../order/context/OrderContext";
 
 export const metadata: Metadata = {
   title: "Reorder Custom Hats",
@@ -14,6 +15,6 @@ export default function ReorderLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <OrderProvider>{children}</OrderProvider>;
 }
 
