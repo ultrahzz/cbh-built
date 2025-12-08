@@ -1,18 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import Button from "../../components/Button";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
-
-  useEffect(() => {
-    // Clear cart after successful payment (optional - implement in OrderContext if needed)
-    // You could also fetch the session details from Stripe here to show order details
-  }, [sessionId]);
 
   return (
     <div className="max-w-2xl mx-auto py-12 text-center">
@@ -103,3 +98,10 @@ export default function SuccessPage() {
   );
 }
 
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="max-w-2xl mx-auto py-12 text-center">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
+  );
+}
