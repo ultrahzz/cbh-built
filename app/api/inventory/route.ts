@@ -114,6 +114,12 @@ export async function GET(request: NextRequest) {
       } else if (endpoint === "inv-partnumber") {
         // Try inventory by part number
         url = `${SS_API_BASE}/inventory/?partnumber=${testStyle}`;
+      } else if (endpoint === "inv-all") {
+        // Try getting all inventory (no filter)
+        url = `${SS_API_BASE}/inventory/`;
+      } else if (endpoint === "inv-sku") {
+        // Try with specific SKU format
+        url = `${SS_API_BASE}/inventory/?sku=${testStyle}`;
       } else {
         url = `${SS_API_BASE}/inventory/?style=${testStyle}`;
       }
