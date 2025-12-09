@@ -120,16 +120,22 @@ export async function fetchSSStyles(options?: {
 // Fetch real-time inventory levels
 export async function fetchSSInventory(options?: {
   styleID?: number;
+  styleName?: string;
   partNumbers?: string[];
 }): Promise<SSInventory[]> {
   let url = `${SS_API_BASE}/inventory/`;
   
   if (options?.styleID) {
     url += `?style=${options.styleID}`;
+  } else if (options?.styleName) {
+    // Try querying by style name/number (e.g., "112" for Richardson 112)
+    url += `?style=${encodeURIComponent(options.styleName)}`;
   } else if (options?.partNumbers && options.partNumbers.length > 0) {
     // Batch fetch by part numbers
     url += `?partnumbers=${options.partNumbers.join(",")}`;
   }
+
+  console.log(`SS Activewear API request: ${url}`);
 
   const response = await fetch(url, {
     headers: {
@@ -141,10 +147,13 @@ export async function fetchSSInventory(options?: {
 
   if (!response.ok) {
     const errorText = await response.text();
+    console.error(`SS Activewear API error: ${response.status} - ${errorText}`);
     throw new Error(`SS Activewear API error: ${response.status} - ${errorText}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  console.log(`SS Activewear returned ${Array.isArray(data) ? data.length : 0} items`);
+  return data;
 }
 
 // Get total inventory across all warehouses for a part number

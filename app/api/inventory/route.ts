@@ -88,6 +88,26 @@ export async function GET(request: NextRequest) {
     });
   }
 
+  // Test endpoint to try fetching directly
+  if (searchParams.get("test") === "true") {
+    const testStyle = searchParams.get("style") || "112";
+    try {
+      const inventory = await fetchSSInventory({ styleName: testStyle });
+      return NextResponse.json({ 
+        success: true, 
+        style: testStyle,
+        itemCount: inventory.length,
+        sample: inventory.slice(0, 5) 
+      });
+    } catch (error) {
+      return NextResponse.json({ 
+        success: false, 
+        style: testStyle,
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  }
+
   // Check if API is configured
   if (!process.env.SSACTIVEWEAR_API_KEY) {
     return NextResponse.json({ qty: null, inventory: {}, error: "API not configured" });
