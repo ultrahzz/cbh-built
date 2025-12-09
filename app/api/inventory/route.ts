@@ -91,13 +91,51 @@ export async function GET(request: NextRequest) {
   // Test endpoint to try fetching directly
   if (searchParams.get("test") === "true") {
     const testStyle = searchParams.get("style") || "112";
+    const endpoint = searchParams.get("endpoint") || "inventory";
+    
     try {
-      const inventory = await fetchSSInventory({ styleName: testStyle });
+      const SS_API_BASE = "https://api.ssactivewear.com/v2";
+      const apiKey = process.env.SSACTIVEWEAR_API_KEY;
+      const accountNumber = process.env.SSACTIVEWEAR_ACCOUNT_NUMBER || "";
+      const credentials = Buffer.from(`${accountNumber}:${apiKey}`).toString("base64");
+      
+      // Try different endpoints
+      let url: string;
+      if (endpoint === "products") {
+        url = `${SS_API_BASE}/products/?style=${testStyle}`;
+      } else if (endpoint === "styles") {
+        url = `${SS_API_BASE}/styles/?style=${testStyle}`;
+      } else if (endpoint === "brand") {
+        url = `${SS_API_BASE}/products/?brand=Richardson`;
+      } else {
+        url = `${SS_API_BASE}/inventory/?style=${testStyle}`;
+      }
+      
+      console.log(`Testing SS API: ${url}`);
+      
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Basic ${credentials}`,
+          Accept: "application/json",
+        },
+      });
+      
+      const responseText = await response.text();
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        data = responseText;
+      }
+      
       return NextResponse.json({ 
-        success: true, 
+        success: response.ok, 
+        status: response.status,
+        endpoint,
         style: testStyle,
-        itemCount: inventory.length,
-        sample: inventory.slice(0, 5) 
+        url: url.replace(credentials, "***"),
+        itemCount: Array.isArray(data) ? data.length : null,
+        sample: Array.isArray(data) ? data.slice(0, 3) : data
       });
     } catch (error) {
       return NextResponse.json({ 
