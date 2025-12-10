@@ -11,8 +11,8 @@ import StockIndicator from "./StockIndicator";
 // - Multiple simultaneous orders
 // - API delays
 // - Warehouse counting variations
-const STOCK_BUFFER = 3; // Show 3 less than actual stock
-const LOW_STOCK_THRESHOLD = 10; // Show "Low Stock" warning when below this
+const STOCK_BUFFER = 99; // Only show in stock if SS has 100+ available
+const LOW_STOCK_THRESHOLD = 50; // Show "Low Stock" warning when below this
 
 // Context for sharing inventory data within a model section
 interface ModelInventoryContextType {
