@@ -348,13 +348,16 @@ function groupHatsByBrandAndModel(hats: HatVariant[]) {
 }
 
 // Try multiple strategies to find stock for a hat
-// Returns: number if found, null if inventory not fetched yet, 0 if fetched but item not in response
+// Returns: number if found in inventory, null if can't determine stock
 function getStockForHat(hat: HatVariant, inventory: Record<string, number>, hasFetchedInventory: boolean): number | null {
   // If we haven't fetched inventory yet, return null (unknown)
   if (!hasFetchedInventory) return null;
   
   // If no part number, can't look up
   if (!hat.ssPartNumber) return null;
+  
+  // If inventory is empty, API might not be configured - return null (allow selection)
+  if (Object.keys(inventory).length === 0) return null;
   
   // Try full part number (uppercase)
   const fullKey = hat.ssPartNumber.toUpperCase().replace(/\s+/g, "");
@@ -371,8 +374,9 @@ function getStockForHat(hat: HatVariant, inventory: Record<string, number>, hasF
   const colorNameKey = hat.colorName.toUpperCase().replace(/[\s/]+/g, "");
   if (inventory[colorNameKey] !== undefined) return inventory[colorNameKey];
   
-  // We fetched inventory but couldn't find this item - treat as OUT OF STOCK
-  return 0;
+  // Couldn't find a match - return null (unknown, allow selection)
+  // This prevents blocking everything if API format doesn't match
+  return null;
 }
 
 // Compact hat card with instant cart sync and stock awareness
