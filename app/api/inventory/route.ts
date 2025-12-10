@@ -3,19 +3,19 @@ import { fetchSSInventory } from "@/app/lib/ssactivewear";
 
 // Style ID mapping for hat models
 // These are numeric STYLEIDs used to query the SS Activewear Products API
-// To find/verify: Call /V2/styles/?brand=Richardson or /V2/styles/?brand=Yupoong
+// Verified from SS Activewear API on 2024-12-10
 const STYLE_IDS: Record<string, number> = {
   // Richardson models
-  "112": 4379,
-  "112PFP": 4380,
-  "168": 4387,  // Verify this ID
-  "220": 4393,
-  "256": 4415,
-  "258": 4417,
-  // Yupoong models
-  "6606": 1553,
-  "6006": 1545,
-  "6506": 1551,
+  "112": 4332,
+  "112PFP": 12234,
+  "168": 2130,
+  "220": 15650,
+  "256": 8151,
+  "258": 12237,
+  // Yupoong (YP Classics) models
+  "6606": 3783,
+  "6006": 2523,
+  "6506": 5768,
 };
 
 // Cache inventory by styleID (refresh every 5 minutes)

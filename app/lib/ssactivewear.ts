@@ -244,19 +244,19 @@ export async function getBatchInventory(
 
 // Common SS Activewear style IDs for hats we carry
 // These are numeric STYLEIDs used to query the Products API
-// To find a STYLEID: Call /V2/styles/?brand=Richardson to get all styles
+// Verified from SS Activewear API on 2024-12-10
 export const SS_STYLE_MAP: Record<string, { styleID: number; brandName: string }> = {
-  // Richardson - verify these IDs by querying the Styles API
-  "Richardson 112": { styleID: 4379, brandName: "Richardson" },
-  "Richardson 112PFP": { styleID: 4380, brandName: "Richardson" },
-  "Richardson 168": { styleID: 4387, brandName: "Richardson" },
-  "Richardson 220": { styleID: 4393, brandName: "Richardson" },
-  "Richardson 256": { styleID: 4415, brandName: "Richardson" },
-  "Richardson 258": { styleID: 4417, brandName: "Richardson" },
-  // Yupoong - verify these IDs by querying the Styles API
-  "Yupoong 6606": { styleID: 1553, brandName: "Yupoong" },
-  "Yupoong 6006": { styleID: 1545, brandName: "Yupoong" },
-  "Yupoong 6506": { styleID: 1551, brandName: "Yupoong" },
+  // Richardson
+  "Richardson 112": { styleID: 4332, brandName: "Richardson" },
+  "Richardson 112PFP": { styleID: 12234, brandName: "Richardson" },
+  "Richardson 168": { styleID: 2130, brandName: "Richardson" },
+  "Richardson 220": { styleID: 15650, brandName: "Richardson" },
+  "Richardson 256": { styleID: 8151, brandName: "Richardson" },
+  "Richardson 258": { styleID: 12237, brandName: "Richardson" },
+  // Yupoong (YP Classics)
+  "Yupoong 6606": { styleID: 3783, brandName: "YP Classics" },
+  "Yupoong 6006": { styleID: 2523, brandName: "YP Classics" },
+  "Yupoong 6506": { styleID: 5768, brandName: "YP Classics" },
 };
 
 // Search products by keyword
