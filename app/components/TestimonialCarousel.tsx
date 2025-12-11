@@ -27,7 +27,10 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
 
     let animationId: number;
     let scrollPosition = 0;
-    const scrollSpeed = 0.3; // pixels per frame (slower pace)
+    
+    // Faster speed on mobile (2x), normal on desktop
+    const isMobile = window.innerWidth < 768;
+    const scrollSpeed = isMobile ? 0.6 : 0.3; // pixels per frame
 
     const scroll = () => {
       if (!isPaused && scrollContainer) {
