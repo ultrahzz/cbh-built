@@ -172,7 +172,7 @@ const richardson168Variants: HatVariant[] = [
 // Richardson 220 variants - images in /hats/richardson-220/
 // SS Activewear part numbers added for real-time inventory
 const richardson220Variants: HatVariant[] = [
-  { id: "richardson-220-black", brand: "Richardson", model: "220", name: "Richardson 220", colorName: "Black", basePrice: 25, image: "/hats/richardson-220/Richardson_220_Black_Front_High.jpg", popular: true, ssPartNumber: "220-BLK" },
+  { id: "richardson-220-black", brand: "Richardson", model: "220", name: "Richardson 220", colorName: "Black", basePrice: 25, image: "/hats/richardson-220/Richardson_220_Black_Front_High.jpg", backImage: "/hats/Richardson_220_Black_Back_High.jpg", popular: true, ssPartNumber: "220-BLK" },
   { id: "richardson-220-navy", brand: "Richardson", model: "220", name: "Richardson 220", colorName: "Navy", basePrice: 25, image: "/hats/richardson-220/Richardson_220_Navy_Front_High.jpg", popular: true, ssPartNumber: "220-NVY" },
   { id: "richardson-220-charcoal", brand: "Richardson", model: "220", name: "Richardson 220", colorName: "Charcoal", basePrice: 25, image: "/hats/richardson-220/Richardson_220_Charcoal_Front_High.jpg", popular: true, ssPartNumber: "220-CHAR" },
   { id: "richardson-220-white", brand: "Richardson", model: "220", name: "Richardson 220", colorName: "White", basePrice: 25, image: "/hats/richardson-220/Richardson_220_White_Front_High.jpg", ssPartNumber: "220-WHT" },
