@@ -494,61 +494,28 @@ function HatCard({ hat }: { hat: HatVariant }) {
         </div>
       )}
 
-      {/* Hat image(s) - show front and back side by side if both available */}
+      {/* Hat image - always show front image only in cards for consistent layout */}
       {hat.image && (
-        hat.backImage ? (
-          // Show front and back images side by side
-          <div className={`flex gap-1 mb-3 ${isOutOfStock ? "grayscale opacity-40" : ""}`}>
-            <ImageModal src={hat.image} alt={`${hat.name} - ${hat.colorName} Front`}>
-              <div className="relative flex-1 aspect-square rounded-lg overflow-hidden bg-gray-50 group">
-                <Image
-                  src={hat.image}
-                  alt={`${hat.name} - ${hat.colorName} Front`}
-                  fill
-                  unoptimized
-                  className="object-contain p-1 transition-transform group-hover:scale-105"
-                  sizes="(max-width: 640px) 25vw, (max-width: 768px) 16vw, 12vw"
-                />
-                <span className="absolute bottom-0.5 left-0.5 text-[8px] bg-black/50 text-white px-1 rounded">Front</span>
+        <ImageModal src={hat.image} alt={`${hat.name} - ${hat.colorName}`}>
+          <div className={`relative w-full aspect-[4/3] mb-3 rounded-lg overflow-hidden bg-gray-50 group ${isOutOfStock ? "grayscale opacity-40" : ""}`}>
+            <Image
+              src={hat.image}
+              alt={`${hat.name} - ${hat.colorName}`}
+              fill
+              unoptimized
+              className="object-contain p-1 transition-transform group-hover:scale-105"
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+            />
+            {/* Zoom icon on hover */}
+            {!isOutOfStock && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-colors">
+                <svg className="w-6 h-6 text-white opacity-0 group-hover:opacity-70 transition-opacity drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
               </div>
-            </ImageModal>
-            <ImageModal src={hat.backImage} alt={`${hat.name} - ${hat.colorName} Back`}>
-              <div className="relative flex-1 aspect-square rounded-lg overflow-hidden bg-gray-50 group">
-                <Image
-                  src={hat.backImage}
-                  alt={`${hat.name} - ${hat.colorName} Back`}
-                  fill
-                  unoptimized
-                  className="object-contain p-1 transition-transform group-hover:scale-105"
-                  sizes="(max-width: 640px) 25vw, (max-width: 768px) 16vw, 12vw"
-                />
-                <span className="absolute bottom-0.5 left-0.5 text-[8px] bg-black/50 text-white px-1 rounded">Back</span>
-              </div>
-            </ImageModal>
+            )}
           </div>
-        ) : (
-          // Single front image only
-          <ImageModal src={hat.image} alt={`${hat.name} - ${hat.colorName}`}>
-            <div className={`relative w-full aspect-[4/3] mb-3 rounded-lg overflow-hidden bg-gray-50 group ${isOutOfStock ? "grayscale opacity-40" : ""}`}>
-              <Image
-                src={hat.image}
-                alt={`${hat.name} - ${hat.colorName}`}
-                fill
-                unoptimized
-                className="object-contain p-1 transition-transform group-hover:scale-105"
-                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-              />
-              {/* Zoom icon on hover */}
-              {!isOutOfStock && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-colors">
-                  <svg className="w-6 h-6 text-white opacity-0 group-hover:opacity-70 transition-opacity drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
-                </div>
-              )}
-            </div>
-          </ImageModal>
-        )
+        </ImageModal>
       )}
 
       {/* Color name - truncated */}
