@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description: "Order premium custom embroidered hats for your business, team, or event. No minimums, free shipping on 24+ hats. Made in USA.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/cbh-logo-dark.png.jpg",
         width: 1200,
         height: 630,
         alt: "Custom Business Hats - Premium Embroidered Hats",
@@ -73,14 +73,18 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Custom Business Hats | Premium Embroidered Hats",
     description: "Order premium custom embroidered hats. No minimums, free shipping on 24+ hats. Made in USA.",
-    images: ["/og-image.jpg"],
+    images: ["/cbh-logo-dark.png.jpg"],
     creator: "@custombusinesshats",
   },
-  // Verification (add your actual codes when ready)
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  // },
+  // Verification - Add your Google Search Console code here
+  // 1. Go to https://search.google.com/search-console
+  // 2. Add your property (custombusinesshats.com)
+  // 3. Choose "HTML tag" verification method
+  // 4. Copy the content value and paste below
+  verification: {
+    google: "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+    // yandex: "your-yandex-verification-code",
+  },
   // Canonical URL
   alternates: {
     canonical: "https://custombusinesshats.com",
@@ -122,7 +126,7 @@ const structuredData = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.9",
-    reviewCount: "300",
+    reviewCount: "301",
     bestRating: "5",
     worstRating: "1",
   },

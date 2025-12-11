@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://custombusinesshats.com/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,28 +11,28 @@
   <!-- Order Flow -->
   <url>
     <loc>https://custombusinesshats.com/order/hats</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://custombusinesshats.com/order/artwork</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://custombusinesshats.com/order/review</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://custombusinesshats.com/order/checkout</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -40,7 +40,7 @@
   <!-- Reorder Page -->
   <url>
     <loc>https://custombusinesshats.com/reorder</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -48,23 +48,22 @@
   <!-- Legal Pages -->
   <url>
     <loc>https://custombusinesshats.com/privacy</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
     <loc>https://custombusinesshats.com/terms</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
     <loc>https://custombusinesshats.com/returns</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 </urlset>
-
