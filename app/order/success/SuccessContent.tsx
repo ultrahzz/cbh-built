@@ -67,6 +67,18 @@ export default function SuccessContent() {
             setError(data.error);
           } else {
             setOrderDetails(data);
+            // Track purchase with Meta Pixel
+            if (typeof window !== 'undefined' && (window as { fbq?: Function }).fbq) {
+              (window as { fbq: Function }).fbq('track', 'Purchase', {
+                value: data.amount_total / 100,
+                currency: 'USD',
+                content_type: 'product',
+                contents: data.line_items.map((item: LineItem) => ({
+                  id: item.description,
+                  quantity: item.quantity,
+                })),
+              });
+            }
           }
           setLoading(false);
         })
