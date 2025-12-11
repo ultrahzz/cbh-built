@@ -288,21 +288,6 @@ export default function SuccessContent() {
         </div>
       </div>
 
-      {/* Returning Customer - Reorder Button */}
-      {isReturningCustomer && (
-        <div className="bg-gradient-to-r from-royal to-primary rounded-xl p-6 mb-8 text-white text-center">
-          <h3 className="text-xl font-bold mb-2">Welcome Back! 🎉</h3>
-          <p className="text-sm opacity-90 mb-4">
-            As a returning customer, your artwork setup fee is waived on future orders!
-          </p>
-          <Link href="/order/hats">
-            <Button className="bg-white text-primary hover:bg-gray-100">
-              Start Another Order
-            </Button>
-          </Link>
-        </div>
-      )}
-
       {/* Contact Info */}
       <div className="bg-gray-50 rounded-xl p-6 mb-8 text-center">
         <p className="text-gray-600">

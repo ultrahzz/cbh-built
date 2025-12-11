@@ -196,16 +196,67 @@ export interface SiteStats {
 }
 
 // =====================================================
-// REWARD TIER THRESHOLDS
+// REWARD TIER THRESHOLDS & BENEFITS
 // =====================================================
-export const REWARD_TIERS: { tier: RewardTier; minSpend: number; discount: number }[] = [
-  { tier: 'Bronze', minSpend: 0, discount: 0 },
-  { tier: 'Silver', minSpend: 250, discount: 5 },
-  { tier: 'Gold', minSpend: 500, discount: 10 },
-  { tier: 'VIP', minSpend: 1000, discount: 15 },
-  { tier: 'Elite', minSpend: 2500, discount: 20 },
-  { tier: 'Diamond', minSpend: 5000, discount: 25 },
-  { tier: 'Platinum', minSpend: 10000, discount: 30 },
+export interface TierBenefits {
+  artworkCredit: boolean;        // $50 Artwork Credit
+  partnerCredit: boolean;        // $50 ShirtLaunch.com Order Credit
+  freeShipping12: boolean;       // Free Shipping @ 12 Hats
+  rewardsCashPercent: number;    // Rewards Cash percentage (0, 3, 4, 5, or 6)
+  accountManager: boolean;       // Direct Account Manager
+  freeArtworkSampling: boolean;  // Free Artwork Sampling
+}
+
+export interface RewardTierInfo {
+  tier: RewardTier;
+  minSpend: number;
+  maxSpend: number | null;       // null for Platinum (no max)
+  benefits: TierBenefits;
+}
+
+export const REWARD_TIERS: RewardTierInfo[] = [
+  { 
+    tier: 'Bronze', 
+    minSpend: 0, 
+    maxSpend: 250,
+    benefits: { artworkCredit: true, partnerCredit: false, freeShipping12: false, rewardsCashPercent: 0, accountManager: false, freeArtworkSampling: false }
+  },
+  { 
+    tier: 'Silver', 
+    minSpend: 250, 
+    maxSpend: 500,
+    benefits: { artworkCredit: true, partnerCredit: true, freeShipping12: false, rewardsCashPercent: 0, accountManager: false, freeArtworkSampling: false }
+  },
+  { 
+    tier: 'Gold', 
+    minSpend: 500, 
+    maxSpend: 1000,
+    benefits: { artworkCredit: true, partnerCredit: true, freeShipping12: true, rewardsCashPercent: 0, accountManager: false, freeArtworkSampling: false }
+  },
+  { 
+    tier: 'VIP', 
+    minSpend: 1000, 
+    maxSpend: 2500,
+    benefits: { artworkCredit: true, partnerCredit: true, freeShipping12: true, rewardsCashPercent: 3, accountManager: false, freeArtworkSampling: false }
+  },
+  { 
+    tier: 'Elite', 
+    minSpend: 2500, 
+    maxSpend: 5000,
+    benefits: { artworkCredit: true, partnerCredit: true, freeShipping12: true, rewardsCashPercent: 4, accountManager: false, freeArtworkSampling: false }
+  },
+  { 
+    tier: 'Diamond', 
+    minSpend: 5000, 
+    maxSpend: 10000,
+    benefits: { artworkCredit: true, partnerCredit: true, freeShipping12: true, rewardsCashPercent: 5, accountManager: true, freeArtworkSampling: false }
+  },
+  { 
+    tier: 'Platinum', 
+    minSpend: 10000, 
+    maxSpend: null,
+    benefits: { artworkCredit: true, partnerCredit: true, freeShipping12: true, rewardsCashPercent: 6, accountManager: true, freeArtworkSampling: true }
+  },
 ];
 
 export function calculateRewardTier(lifetimeSpend: number): RewardTier {
@@ -217,9 +268,18 @@ export function calculateRewardTier(lifetimeSpend: number): RewardTier {
   return 'Bronze';
 }
 
-export function getRewardDiscount(tier: RewardTier): number {
+export function getTierInfo(tier: RewardTier): RewardTierInfo | undefined {
+  return REWARD_TIERS.find(t => t.tier === tier);
+}
+
+export function getTierBenefits(tier: RewardTier): TierBenefits {
   const found = REWARD_TIERS.find(t => t.tier === tier);
-  return found?.discount || 0;
+  return found?.benefits || REWARD_TIERS[0].benefits;
+}
+
+export function getRewardsCashPercent(tier: RewardTier): number {
+  const found = REWARD_TIERS.find(t => t.tier === tier);
+  return found?.benefits.rewardsCashPercent || 0;
 }
 
 export function getNextTier(tier: RewardTier): { tier: RewardTier; amountNeeded: number } | null {
@@ -229,5 +289,20 @@ export function getNextTier(tier: RewardTier): { tier: RewardTier; amountNeeded:
     return { tier: next.tier, amountNeeded: next.minSpend };
   }
   return null;
+}
+
+export function formatSpendRange(tierInfo: RewardTierInfo): string {
+  if (tierInfo.maxSpend === null) {
+    return `$${(tierInfo.minSpend / 1000).toFixed(0)}k+`;
+  }
+  if (tierInfo.minSpend === 0) {
+    return `$0-${tierInfo.maxSpend}`;
+  }
+  if (tierInfo.minSpend >= 1000) {
+    const min = tierInfo.minSpend >= 1000 ? `$${(tierInfo.minSpend / 1000).toFixed(tierInfo.minSpend % 1000 === 0 ? 0 : 1)}k` : `$${tierInfo.minSpend}`;
+    const max = tierInfo.maxSpend >= 1000 ? `$${(tierInfo.maxSpend / 1000).toFixed(tierInfo.maxSpend % 1000 === 0 ? 0 : 1)}k` : `$${tierInfo.maxSpend}`;
+    return `${min}-${max.replace('$', '')}`;
+  }
+  return `$${tierInfo.minSpend}-${tierInfo.maxSpend}`;
 }
 
