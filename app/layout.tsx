@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "Custom Business Hats | Premium Embroidered Hats for Teams & Businesses",
     template: "%s | Custom Business Hats",
   },
-  description: "Order premium custom embroidered hats for your business, team, or event. Richardson, Yupoong, Flexfit & more. No minimums, free shipping on 24+ hats. Made in USA with 10-15 day turnaround.",
+  description: "Order premium custom embroidered hats for your business, team, or event. Richardson, Yupoong, Flexfit & more. No minimums, free shipping on 24+ hats. Made in USA with 10-15 business day turnaround.",
   keywords: [
     "custom hats",
     "embroidered hats",

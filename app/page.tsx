@@ -246,7 +246,7 @@ export default function Home() {
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
               Premium embroidered hats from Richardson, Yupoong & more. 
-              No minimums. No hidden fees. 10-15 day turnaround.
+              No minimums. No hidden fees. 10-15 business day turnaround.
             </p>
 
             {/* CTA Buttons */}
