@@ -522,6 +522,7 @@ function HatCard({ hat }: { hat: HatVariant }) {
                   src={hat.image}
                   alt={`${hat.name} - ${hat.colorName} Front`}
                   fill
+                  unoptimized
                   className="object-contain p-1 transition-transform group-hover:scale-105"
                   sizes="(max-width: 640px) 25vw, (max-width: 768px) 16vw, 12vw"
                 />
@@ -534,6 +535,7 @@ function HatCard({ hat }: { hat: HatVariant }) {
                   src={hat.backImage}
                   alt={`${hat.name} - ${hat.colorName} Back`}
                   fill
+                  unoptimized
                   className="object-contain p-1 transition-transform group-hover:scale-105"
                   sizes="(max-width: 640px) 25vw, (max-width: 768px) 16vw, 12vw"
                 />
@@ -549,6 +551,7 @@ function HatCard({ hat }: { hat: HatVariant }) {
                 src={hat.image}
                 alt={`${hat.name} - ${hat.colorName}`}
                 fill
+                unoptimized
                 className="object-contain p-1 transition-transform group-hover:scale-105"
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
               />
