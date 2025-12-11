@@ -186,9 +186,9 @@ export default function ArtworkPage() {
           <p className="text-sm text-gray-500 mb-4">Choose where your main logo will be placed</p>
           <div className="space-y-3">
             {[
-              { value: "front-center", label: "Front Center" },
-              { value: "front-left", label: "Front Left Panel" },
-              { value: "front-right", label: "Front Right Panel" },
+              { value: "front-center", label: "Center" },
+              { value: "front-left", label: "Over Left Eye" },
+              { value: "front-right", label: "Over Right Eye" },
             ].map((option) => (
               <label
                 key={option.value}

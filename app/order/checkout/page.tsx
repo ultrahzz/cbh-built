@@ -7,9 +7,9 @@ import Button from "../../components/Button";
 import { useOrder, EXTRA_LOCATION_PRICE, ARTWORK_SETUP_FEE } from "../context/OrderContext";
 
 const frontLocationLabels: Record<string, string> = {
-  "front-center": "Front Center",
-  "front-left": "Front Left Panel",
-  "front-right": "Front Right Panel",
+  "front-center": "Center",
+  "front-left": "Over Left Eye",
+  "front-right": "Over Right Eye",
 };
 
 const extraLocationLabels: Record<string, string> = {
