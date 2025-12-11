@@ -708,6 +708,9 @@ function ModelSection({
     return total + (cartItem?.quantity || 0);
   }, 0);
 
+  // Get the first variant's image for preview
+  const previewImage = variants[0]?.image;
+
   return (
     <div className="overflow-hidden">
       {/* Model Header - Clickable */}
@@ -715,16 +718,33 @@ function ModelSection({
         onClick={onToggle}
         className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded">
-            {model}
-          </span>
-          <span className="text-xs text-gray-400">({variants.length} colors)</span>
-          {cartCount > 0 && (
-            <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-              {cartCount} in cart
-            </span>
+        <div className="flex items-center gap-3">
+          {/* Preview image of the hat style */}
+          {previewImage && (
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+              <Image
+                src={previewImage}
+                alt={`${brand} ${model} preview`}
+                width={56}
+                height={56}
+                className="w-full h-full object-contain"
+                unoptimized
+              />
+            </div>
           )}
+          <div className="flex flex-col items-start gap-1">
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded">
+                {model}
+              </span>
+              <span className="text-xs text-gray-400">({variants.length} colors)</span>
+            </div>
+            {cartCount > 0 && (
+              <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                {cartCount} in cart
+              </span>
+            )}
+          </div>
         </div>
         <svg
           className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
